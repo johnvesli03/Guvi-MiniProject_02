@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<title>DASHBOARD</title>
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-container bg-gradient-to-r from-indigo-100 to-purple-100 min-h-screen flex flex-col">
+
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<!-- Welcome User Section -->
+<div class="welcome-message bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold text-xl">
+    <!-- For Spring Security Authentication Context -->
+    <div class="welcome-message">
+        <h1>Welcome, <span sec:authentication="name"></span></h1>
+    </div>
+
+</div>
+
+<div class="dashboard-header text-3xl text-center font-bold py-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg">
+    Dashboard
+</div>
+
+<div class="dashboard-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+
+    <!-- Appointments Card -->
+    <div class="dashboard-card bg-gradient-to-r from-green-400 to-teal-400 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+        <div class="card-icon text-4xl mb-4">
+            <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3 class="text-xl font-semibold">Appointments</h3>
+        <p th:text="${appointmentCount}" class="text-3xl font-bold my-4">0</p>
+        <div class="progress-bar-wrapper relative h-1.5 bg-white rounded-full mb-4">
+            <div class="progress-bar bg-teal-500 h-full" style="width: 60%;"></div>
+        </div>
+        <a href="/appointments" class="underline text-teal-100 hover:text-teal-200">View Appointments</a>
+    </div>
+
+    <!-- Doctors Card -->
+    <div class="dashboard-card bg-gradient-to-r from-yellow-400 to-orange-400 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+        <div class="card-icon text-4xl mb-4">
+            <i class="fas fa-user-md"></i>
+        </div>
+        <h3 class="text-xl font-semibold">Doctors</h3>
+        <p th:text="${doctorCount}" class="text-3xl font-bold my-4">0</p>
+        <div class="progress-bar-wrapper relative h-1.5 bg-white rounded-full mb-4">
+            <div class="progress-bar bg-orange-500 h-full" style="width: 75%;"></div>
+        </div>
+        <a href="/doctors" class="underline text-orange-100 hover:text-orange-200">View Doctors</a>
+    </div>
+
+    <!-- Medications Card -->
+    <div class="dashboard-card bg-gradient-to-r from-pink-400 to-red-400 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+        <div class="card-icon text-4xl mb-4">
+            <i class="fas fa-pills"></i>
+        </div>
+        <h3 class="text-xl font-semibold">Medications</h3>
+        <p th:text="${medicationCount}" class="text-3xl font-bold my-4">0</p>
+        <div class="progress-bar-wrapper relative h-1.5 bg-white rounded-full mb-4">
+            <div class="progress-bar bg-red-500 h-full" style="width: 50%;"></div>
+        </div>
+        <a href="/medications" class="underline text-red-100 hover:text-red-200">View Medications</a>
+    </div>
+
+</div>
+
+</body>
+</html>

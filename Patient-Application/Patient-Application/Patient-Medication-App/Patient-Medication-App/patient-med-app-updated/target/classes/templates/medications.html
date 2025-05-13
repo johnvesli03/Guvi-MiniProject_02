@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Medications</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mx-auto bg-white p-6 rounded shadow medications-table-container">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">Medications List</h2>
+    <div class="mb-4 text-center">
+        <a href="/medications/new" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition duration-200">Add Medicine</a>
+    </div>
+    <table class="medications-table w-full">
+        <thead>
+        <tr>
+            <th>Medicine Name</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="medication : ${medications}">
+            <td th:text="${medication.medicineName}"></td>
+            <td th:text="${medication.dosage}"></td>
+            <td th:text="${medication.frequency}"></td>
+            <td th:text="${medication.startDate}"></td>
+            <td th:text="${medication.endDate}"></td>
+            <td>
+                <a th:href="@{'/medications/delete/' + ${medication.id}}" class="text-red-600 hover:underline" onclick="return confirm('Are you sure you want to delete this medication?');">Delete</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(medications)}">
+            <td colspan="6" class="text-center py-4">No medications found.</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

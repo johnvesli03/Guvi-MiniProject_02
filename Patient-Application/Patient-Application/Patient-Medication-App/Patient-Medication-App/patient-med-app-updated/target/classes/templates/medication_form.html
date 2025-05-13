@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Medication</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="styles.css"></script>
+</head>
+<body class="medication-form-body p-6">
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4">Add Medication</h2>
+    <form th:action="@{/medications}" th:object="${medication}" method="post" class="space-y-4">
+        <div>
+            <label for="medicineName" class="block mb-1 font-semibold">Medicine Name</label>
+            <input type="text" id="medicineName" th:field="*{medicineName}" required
+                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        </div>
+        <div>
+            <label for="dosage" class="block mb-1 font-semibold">Dosage</label>
+            <input type="text" id="dosage" th:field="*{dosage}" required
+                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        </div>
+        <div>
+            <label for="frequency" class="block mb-1 font-semibold">Frequency</label>
+            <input type="text" id="frequency" th:field="*{frequency}" required
+                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        </div>
+        <div>
+            <label for="startDate" class="block mb-1 font-semibold">Start Date</label>
+            <input type="date" id="startDate" th:field="*{startDate}" required
+                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        </div>
+        <div>
+            <label for="endDate" class="block mb-1 font-semibold">End Date</label>
+            <input type="date" id="endDate" th:field="*{endDate}" required
+                   class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        </div>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200">Save
+        </button>
+    </form>
+    <a href="/medications" class="inline-block mt-4 text-blue-600 hover:underline">Back to Medications</a>
+</div>
+</body>
+</html>
